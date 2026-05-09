@@ -831,6 +831,23 @@ def predictor():
         transform: scale(1.02);
         box-shadow: 0 0 20px rgba(37,99,235,0.6);
     }
+    /* ================= DOWNLOAD BUTTON ================= */
+    .stDownloadButton > button {
+        width: 100% !important;
+        background: linear-gradient(135deg,#2563eb,#1d4ed8) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 12px !important;
+        font-weight: 600 !important;
+        transition: 0.3s;
+    }
+
+    /* ================= DOWNLOAD HOVER ================= */
+    .stDownloadButton > button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(37,99,235,0.6);
+    }
 
     </style>
     """, unsafe_allow_html=True)
