@@ -1031,197 +1031,197 @@ def predictor():
             st.session_state.input_df = df.to_dict(orient="records")[0]
 
 # ================= SHOW AFTER RERUN =================
-if "final_pred" in st.session_state:
+    if "final_pred" in st.session_state:
 
-    final_pred = st.session_state.final_pred
-    prob = st.session_state.prob
+        final_pred = st.session_state.final_pred
+        prob = st.session_state.prob
 
-    lang = st.session_state.lang
-    translated_pred = translate_text(final_pred, lang)
+        lang = st.session_state.lang
+        translated_pred = translate_text(final_pred, lang)
 
     # ================= COLOR =================
-    risk_colors = {
-        "Death": "#ef4444",
-        "Days Away From Work": "#f59e0b",
-        "Job Transfer / Restriction": "#3b82f6",
-        "Other Recordable Case": "#22c55e"
-    }
+        risk_colors = {
+            "Death": "#ef4444",
+            "Days Away From Work": "#f59e0b",
+            "Job Transfer / Restriction": "#3b82f6",
+            "Other Recordable Case": "#22c55e"
+        }
 
-    color = risk_colors.get(final_pred, "#22c55e")
+        color = risk_colors.get(final_pred, "#22c55e")
 
     # ================= RESULT BOX =================
-    st.markdown(f"""
-    <div style="
-    background: linear-gradient(135deg, #111827, #020617);
-    padding:35px;
-    border-radius:20px;
-    border-left:8px solid {color};
-    margin-top:25px;
-    margin-bottom:25px;
-    box-shadow:0 0 30px rgba(0,0,0,0.35);
-    ">
-
-    <h2 style="
-    color:white;
-    margin-bottom:25px;
-    font-size:32px;
-    ">
-    🎯 Prediction Result
-    </h2>
-
-    <div style="
-    background: rgba(255,255,255,0.05);
-    padding:25px;
-    border-radius:15px;
-    margin-bottom:20px;
-    ">
-
-    <h1 style="
-    color:{color};
-    font-size:42px;
-    margin-bottom:10px;
-    font-weight:700;
-    ">
-    {translated_pred}
-    </h1>
-
-    <p style="
-    font-size:20px;
-    color:#cbd5e1;
-    margin-top:10px;
-    ">
-    📊 Confidence Score:
-    <span style="
-    color:white;
-    font-weight:700;
-    font-size:24px;
-    ">
-    {prob:.2f}
-    </span>
-    </p>
-
-    </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-    # ================= BUTTON =================
-    if st.button("🤖 Generate AI Explanation"):
-
-        with st.spinner("🤖 AI is analyzing the incident..."):
-
-            st.session_state.explanation = explain_prediction(
-                st.session_state.input_df,
-                final_pred,
-                prob
-            )
-
-    # ================= SHOW AI =================
-    if "explanation" in st.session_state and st.session_state.explanation:
-
-        explanation = st.session_state.explanation
-
-        import re
-
-        explanation = explanation.replace("###", "")
-        explanation = explanation.replace("\n", "<br>")
-        explanation = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", explanation)
-
-        explanation = explanation.replace(
-            "1. Root Cause",
-            "<br><b>🔍 Root Cause</b><br>"
-        )
-
-        explanation = explanation.replace(
-            "2. Risk Factors",
-            "<br><b>⚠ Risk Factors</b><br>"
-        )
-
-        explanation = explanation.replace(
-            "3. Chances of Recurrence",
-            "<br><b>🔁 Chances of Recurrence</b><br>"
-        )
-
-        explanation = explanation.replace(
-            "4. Prevention & Solutions",
-            "<br><b>🛠 Prevention & Solutions</b><br>"
-        )
-
-        explanation = explanation.replace(
-            "5. Worker Treatment",
-            "<br><b>🏥 Worker Treatment</b><br>"
-        )
-
-        explanation = explanation.replace(
-            "6. Long-term Safety Measures",
-            "<br><b>📊 Long-term Safety Measures</b><br>"
-        )
-
         st.markdown(f"""
         <div style="
-        background: linear-gradient(135deg, #020617, #0f172a);
+        background: linear-gradient(135deg, #111827, #020617);
+        padding:35px;
+        border-radius:20px;
+        border-left:8px solid {color};
+        margin-top:25px;
+        margin-bottom:25px;
+        box-shadow:0 0 30px rgba(0,0,0,0.35);
+        ">
+
+        <h2 style="
+        color:white;
+        margin-bottom:25px;
+        font-size:32px;
+        ">
+        🎯 Prediction Result
+        </h2>
+
+        <div style="
+        background: rgba(255,255,255,0.05);
         padding:25px;
         border-radius:15px;
-        border:1px solid rgba(255,255,255,0.1);
-        margin-top:20px;
+        margin-bottom:20px;
         ">
 
-        <h3 style="color:#e2e8f0;">
-        🤖 AI Safety Explanation
-        </h3>
+        <h1 style="
+        color:{color};
+        font-size:42px;
+        margin-bottom:10px;
+        font-weight:700;
+        ">
+        {translated_pred}
+        </h1>
 
         <p style="
-        color:#e2e8f0;
-        font-size:16px;
-        line-height:1.7;
+        font-size:20px;
+        color:#cbd5e1;
+        margin-top:10px;
         ">
-        {explanation}
+        📊 Confidence Score:
+        <span style="
+        color:white;
+        font-weight:700;
+        font-size:24px;
+        ">
+        {prob:.2f}
+        </span>
         </p>
+
+        </div>
 
         </div>
         """, unsafe_allow_html=True)
 
-    # ================= DOWNLOAD BUTTON =================
-    report_text = f"""
-🛡️ SafeGuard AI - Risk Report
+    # ================= BUTTON =================
+        if st.button("🤖 Generate AI Explanation"):
 
-----------------------------------------
-📊 Prediction Result:
-{st.session_state.final_pred}
+            with st.spinner("🤖 AI is analyzing the incident..."):
 
-📈 Confidence Score:
-{st.session_state.prob:.2f}
+                st.session_state.explanation = explain_prediction(
+                    st.session_state.input_df,
+                    final_pred,
+                    prob
+                )
 
-----------------------------------------
-🤖 AI Safety Explanation:
-{st.session_state.explanation}
+    # ================= SHOW AI =================
+        if "explanation" in st.session_state and st.session_state.explanation:
 
-----------------------------------------
-Generated by SafeGuard AI
-"""
+            explanation = st.session_state.explanation
 
-    st.download_button(
-        label="📥 Download Report",
-        data=report_text,
-        file_name="safety_report.txt",
-        mime="text/plain"
-    )
+            import re
 
-    # ================= PDF DOWNLOAD =================
-    explanation = st.session_state.get("explanation", "")
+            explanation = explanation.replace("###", "")
+            explanation = explanation.replace("\n", "<br>")
+            explanation = re.sub(r"\*\*(.*?)\*\*", r"<b>\1</b>", explanation)
 
-    pdf_file = create_pdf_report(
-        final_pred,
-        prob,
-        explanation
-    )
+            explanation = explanation.replace(
+                "1. Root Cause",
+                "<br><b>🔍 Root Cause</b><br>"
+            )
 
-    st.download_button(
-        label="📄 Download PDF",
-        data=pdf_file,
-        file_name="safety_report.pdf",
-        mime="application/pdf"
-    )
+            explanation = explanation.replace(
+                "2. Risk Factors",
+                "<br><b>⚠ Risk Factors</b><br>"
+            )
+
+            explanation = explanation.replace(
+                "3. Chances of Recurrence",
+                "<br><b>🔁 Chances of Recurrence</b><br>"
+            )
+
+            explanation = explanation.replace(
+                "4. Prevention & Solutions",
+                "<br><b>🛠 Prevention & Solutions</b><br>"
+            )
+
+            explanation = explanation.replace(
+                "5. Worker Treatment",
+                "<br><b>🏥 Worker Treatment</b><br>"
+            )
+
+            explanation = explanation.replace(
+                "6. Long-term Safety Measures",
+                "<br><b>📊 Long-term Safety Measures</b><br>"
+            )
+
+            st.markdown(f"""
+            <div style="
+            background: linear-gradient(135deg, #020617, #0f172a);
+            padding:25px;
+            border-radius:15px;
+            border:1px solid rgba(255,255,255,0.1);
+            margin-top:20px;
+            ">
+
+            <h3 style="color:#e2e8f0;">
+            🤖 AI Safety Explanation
+            </h3>
+
+            <p style="
+            color:#e2e8f0;
+            font-size:16px;
+            line-height:1.7;
+            ">
+            {explanation}
+            </p>
+    
+            </div>
+            """, unsafe_allow_html=True)
+    
+        # ================= DOWNLOAD BUTTON =================
+        report_text = f"""
+    🛡️ SafeGuard AI - Risk Report
+    
+    ----------------------------------------
+    📊 Prediction Result:
+    {st.session_state.final_pred}
+    
+    📈 Confidence Score:
+    {st.session_state.prob:.2f}
+    
+    ----------------------------------------
+    🤖 AI Safety Explanation:
+    {st.session_state.explanation}
+    
+    ----------------------------------------
+    Generated by SafeGuard AI
+    """
+    
+        st.download_button(
+            label="📥 Download Report",
+            data=report_text,
+            file_name="safety_report.txt",
+            mime="text/plain"
+        )
+    
+        # ================= PDF DOWNLOAD =================
+        explanation = st.session_state.get("explanation", "")
+    
+        pdf_file = create_pdf_report(
+            final_pred,
+            prob,
+            explanation
+        )
+    
+        st.download_button(
+            label="📄 Download PDF",
+            data=pdf_file,
+            file_name="safety_report.pdf",
+            mime="application/pdf"
+        )
 # ═══════════════════════════════════════════════════════════
 # ASK AI  (Fixed ChatGPT-like behavior)
 # ═══════════════════════════════════════════════════════════     
