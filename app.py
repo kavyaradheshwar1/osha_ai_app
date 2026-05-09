@@ -26,7 +26,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # ==============================
 st.set_page_config(page_title="SafeGuard AI", layout="wide")
 # GLOBAL DARK THEME
-# GLOBAL DARK THEME
+
 st.markdown("""
 <style>
 
@@ -814,6 +814,24 @@ def predictor():
     }
     </style>
     """, unsafe_allow_html=True)
+
+    /* ================= FORM BUTTON ================= */
+    .stFormSubmitButton > button {
+        width: 100% !important;
+        background: linear-gradient(135deg,#2563eb,#1d4ed8) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 12px !important;
+        padding: 12px !important;
+        font-weight: 600 !important;
+        transition: 0.3s;
+    }
+
+    /* ================= HOVER ================= */
+    .stFormSubmitButton > button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(37,99,235,0.6);
+    }
 
     st.markdown("## 📊 Risk Predictor")
 
