@@ -29,25 +29,24 @@ st.set_page_config(page_title="SafeGuard AI", layout="wide")
 st.markdown("""
 <style>
 
-/* MAIN APP */
+/* ================= MAIN APP ================= */
 .stApp {
-    background-color: #020617;
-    color: white;
+    background-color: #020617 !important;
+    color: white !important;
 }
 
-/* REMOVE WHITE AREA */
+/* REMOVE WHITE STREAMLIT AREAS */
 [data-testid="stAppViewContainer"] {
     background-color: #020617 !important;
 }
 
-/* MAIN */
 .main {
     background-color: #020617 !important;
 }
 
-/* PAGE CONTAINER */
 .block-container {
     background-color: #020617 !important;
+    padding-top: 2rem;
 }
 
 /* HEADER */
@@ -55,41 +54,115 @@ header {
     background: transparent !important;
 }
 
-/* TEXT */
-h1, h2, h3, h4, h5, h6, p, span, label {
+/* ================= TEXT ================= */
+h1, h2, h3, h4, h5, h6,
+p, span, label, div {
     color: white !important;
 }
 
-/* INPUTS */
-.stTextInput input,
-.stTextArea textarea,
+/* ================= INPUT CONTAINER ================= */
+div[data-baseweb="input"] {
+    background-color: #111827 !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 10px !important;
+}
+
+/* INPUT TEXT */
+div[data-baseweb="input"] input {
+    color: white !important;
+    background: transparent !important;
+    caret-color: white !important;
+}
+
+/* PASSWORD ICON */
+div[data-baseweb="input"] svg {
+    fill: white !important;
+}
+
+/* TEXTAREA */
+.stTextArea textarea {
+    background-color: #111827 !important;
+    color: white !important;
+    caret-color: white !important;
+    border-radius: 10px !important;
+}
+
+/* NUMBER INPUT */
 .stNumberInput input {
     background-color: #111827 !important;
     color: white !important;
     caret-color: white !important;
 }
 
-/* SELECTBOX */
-.stSelectbox div[data-baseweb="select"] > div {
+/* NUMBER BUTTONS */
+button.step-up,
+button.step-down {
     background-color: #111827 !important;
     color: white !important;
 }
 
-/* DROPDOWN */
-.stSelectbox * {
+/* SELECTBOX */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #111827 !important;
+    color: white !important;
+    border-radius: 10px !important;
+}
+
+/* DROPDOWN MENU */
+div[data-baseweb="popover"] * {
+    background-color: #111827 !important;
     color: white !important;
 }
 
-/* BUTTON */
+/* PLACEHOLDER */
+input::placeholder,
+textarea::placeholder {
+    color: #9ca3af !important;
+}
+
+/* ================= BUTTON ================= */
 .stButton > button {
-    background: linear-gradient(135deg,#2563eb,#1d4ed8);
-    color:white;
-    border:none;
-    border-radius:12px;
+    background: linear-gradient(135deg,#2563eb,#1d4ed8) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    transition: 0.3s;
+}
+
+.stButton > button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(37,99,235,0.5);
+}
+
+/* ================= FORM ================= */
+[data-testid="stForm"] {
+    background: transparent !important;
+}
+
+/* ================= SIDEBAR ================= */
+[data-testid="stSidebar"] {
+    background-color: #111827 !important;
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
 }
 
 </style>
 """, unsafe_allow_html=True)
+
 
 if "lang" not in st.session_state:
     st.session_state.lang = "English"
@@ -292,7 +365,7 @@ def login_style():
     st.markdown("""
     <style>
 
-    /* FULL PAGE BACKGROUND */
+    /* ================= FULL PAGE BACKGROUND ================= */
     .stApp {
         background:
         linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
@@ -303,7 +376,7 @@ def login_style():
         background-attachment: fixed;
     }
 
-    /* REMOVE WHITE CONTAINER */
+    /* ================= REMOVE WHITE AREAS ================= */
     [data-testid="stAppViewContainer"] {
         background: transparent !important;
     }
@@ -317,58 +390,84 @@ def login_style():
         padding-top: 2rem;
     }
 
-    /* LOGIN CARD */
+    /* ================= LOGIN CARD ================= */
     .card {
         background: rgba(0,0,0,0.85);
-        padding:40px;
-        border-radius:20px;
-        box-shadow:0px 0px 40px rgba(0,0,0,0.6);
-        text-align:center;
-        border:1px solid rgba(255,255,255,0.08);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0px 0px 40px rgba(0,0,0,0.6);
+        text-align: center;
+        border: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* INPUT BOX */
-    .stTextInput input {
-        background-color: rgba(255,255,255,0.12) !important;
-        color: white !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
+    /* ================= REAL INPUT CONTAINER ================= */
+    div[data-baseweb="input"] {
+        background-color: rgba(17,24,39,0.95) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
         border-radius: 10px !important;
     }
 
-    /* PASSWORD BOX */
-    .stTextInput div[data-baseweb="input"] {
-        background-color: rgba(255,255,255,0.12) !important;
+    /* ================= INPUT TEXT ================= */
+    div[data-baseweb="input"] input {
+        background: transparent !important;
+        color: white !important;
+        caret-color: white !important;
     }
 
-    /* LABELS */
+    /* ================= PLACEHOLDER ================= */
+    input::placeholder {
+        color: #9ca3af !important;
+    }
+
+    /* ================= PASSWORD ICON ================= */
+    div[data-baseweb="input"] svg {
+        fill: white !important;
+    }
+
+    /* ================= LABELS ================= */
     label {
         color: white !important;
+        font-weight: 500;
     }
 
-    /* BUTTON */
-    .stButton>button {
-        width:100%;
-        background:linear-gradient(135deg,#2563eb,#1d4ed8);
-        color:white;
-        border-radius:10px;
-        border:none;
-        padding:12px;
-        font-weight:600;
+    /* ================= BUTTON ================= */
+    .stButton > button {
+        width: 100%;
+        background: linear-gradient(135deg,#2563eb,#1d4ed8) !important;
+        color: white !important;
+        border-radius: 10px !important;
+        border: none !important;
+        padding: 12px !important;
+        font-weight: 600 !important;
+        transition: 0.3s;
     }
 
-    .stButton>button:hover {
-        box-shadow:0 0 20px rgba(37,99,235,0.6);
-        transform:scale(1.02);
+    .stButton > button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 20px rgba(37,99,235,0.6);
     }
 
-    /* REMOVE HEADER BACKGROUND */
+    /* ================= REMOVE HEADER ================= */
     header {
         background: transparent !important;
     }
 
+    /* ================= SCROLLBAR ================= */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #2563eb;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #020617;
+    }
+
     </style>
     """, unsafe_allow_html=True)
-
 # ==============================
 # LOGIN PAGE (CENTERED)
 # ==============================
