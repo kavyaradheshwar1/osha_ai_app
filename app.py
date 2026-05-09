@@ -56,8 +56,8 @@ header {
 }
 
 /* ================= TEXT ================= */
-h1, h2, h3, h4, h5, h6,
-p, span, label {
+h2, h3, h4, h5, h6,
+p, label {
     color: white !important;
 }
 
@@ -1077,7 +1077,7 @@ def predictor():
         ">
 
         <h1 style="
-        color:{color};
+        color:{color} !important;
         font-size:42px;
         margin-bottom:10px;
         font-weight:700;
