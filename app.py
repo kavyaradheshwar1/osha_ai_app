@@ -25,6 +25,46 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # CONFIG
 # ==============================
 st.set_page_config(page_title="SafeGuard AI", layout="wide")
+st.markdown("""
+<style>
+
+/* FORCE DARK APP */
+.stApp {
+    background-color: #020617;
+    color: white;
+}
+
+/* REMOVE STREAMLIT WHITE AREAS */
+[data-testid="stAppViewContainer"] {
+    background: #020617;
+}
+
+.main {
+    background-color: #020617;
+}
+
+.block-container {
+    background-color: #020617;
+}
+
+/* HEADER */
+header {
+    background: transparent !important;
+}
+
+/* SIDEBAR */
+[data-testid="stSidebar"] {
+    background-color: #111827;
+}
+
+/* TEXT */
+h1,h2,h3,h4,h5,h6,p,span,label {
+    color: white !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 
 if "lang" not in st.session_state:
     st.session_state.lang = "English"
