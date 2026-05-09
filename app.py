@@ -25,26 +25,29 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # CONFIG
 # ==============================
 st.set_page_config(page_title="SafeGuard AI", layout="wide")
+# GLOBAL DARK THEME
 st.markdown("""
 <style>
 
-/* FORCE DARK APP */
+/* MAIN APP */
 .stApp {
     background-color: #020617;
     color: white;
 }
 
-/* REMOVE STREAMLIT WHITE AREAS */
+/* REMOVE WHITE AREA */
 [data-testid="stAppViewContainer"] {
-    background: #020617;
+    background-color: #020617 !important;
 }
 
+/* MAIN CONTAINER */
 .main {
-    background-color: #020617;
+    background-color: #020617 !important;
 }
 
+/* PAGE CONTAINER */
 .block-container {
-    background-color: #020617;
+    background-color: #020617 !important;
 }
 
 /* HEADER */
@@ -52,19 +55,13 @@ header {
     background: transparent !important;
 }
 
-/* SIDEBAR */
-[data-testid="stSidebar"] {
-    background-color: #111827;
-}
-
 /* TEXT */
-h1,h2,h3,h4,h5,h6,p,span,label {
+h1, h2, h3, h4, h5, h6, p, span, label {
     color: white !important;
 }
 
 </style>
 """, unsafe_allow_html=True)
-
 
 if "lang" not in st.session_state:
     st.session_state.lang = "English"
@@ -266,26 +263,81 @@ if "page" not in st.session_state:
 def login_style():
     st.markdown("""
     <style>
-    .stApp {
-    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
-    url("https://images.unsplash.com/photo-1503387762-592deb58ef4e");
-    background-size: cover;
-}
 
+    /* FULL PAGE BACKGROUND */
+    .stApp {
+        background:
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    /* REMOVE WHITE CONTAINER */
+    [data-testid="stAppViewContainer"] {
+        background: transparent !important;
+    }
+
+    .main {
+        background: transparent !important;
+    }
+
+    .block-container {
+        background: transparent !important;
+        padding-top: 2rem;
+    }
+
+    /* LOGIN CARD */
     .card {
         background: rgba(0,0,0,0.85);
         padding:40px;
         border-radius:20px;
         box-shadow:0px 0px 40px rgba(0,0,0,0.6);
         text-align:center;
+        border:1px solid rgba(255,255,255,0.08);
     }
 
+    /* INPUT BOX */
+    .stTextInput input {
+        background-color: rgba(255,255,255,0.12) !important;
+        color: white !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 10px !important;
+    }
+
+    /* PASSWORD BOX */
+    .stTextInput div[data-baseweb="input"] {
+        background-color: rgba(255,255,255,0.12) !important;
+    }
+
+    /* LABELS */
+    label {
+        color: white !important;
+    }
+
+    /* BUTTON */
     .stButton>button {
         width:100%;
         background:linear-gradient(135deg,#2563eb,#1d4ed8);
         color:white;
         border-radius:10px;
+        border:none;
+        padding:12px;
+        font-weight:600;
     }
+
+    .stButton>button:hover {
+        box-shadow:0 0 20px rgba(37,99,235,0.6);
+        transform:scale(1.02);
+    }
+
+    /* REMOVE HEADER BACKGROUND */
+    header {
+        background: transparent !important;
+    }
+
     </style>
     """, unsafe_allow_html=True)
 
