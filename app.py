@@ -26,6 +26,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # ==============================
 st.set_page_config(page_title="SafeGuard AI", layout="wide")
 # GLOBAL DARK THEME
+# GLOBAL DARK THEME
 st.markdown("""
 <style>
 
@@ -35,7 +36,7 @@ st.markdown("""
     color: white !important;
 }
 
-/* REMOVE WHITE STREAMLIT AREAS */
+/* ================= REMOVE WHITE AREAS ================= */
 [data-testid="stAppViewContainer"] {
     background-color: #020617 !important;
 }
@@ -49,75 +50,98 @@ st.markdown("""
     padding-top: 2rem;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 header {
     background: transparent !important;
 }
 
 /* ================= TEXT ================= */
 h1, h2, h3, h4, h5, h6,
-p, span, label, div {
+p, span, label {
     color: white !important;
+}
+
+/* ================= INPUT WRAPPER ================= */
+div[data-baseweb="base-input"] {
+    background-color: #0f172a !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 12px !important;
 }
 
 /* ================= INPUT CONTAINER ================= */
 div[data-baseweb="input"] {
-    background-color: #111827 !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
-    border-radius: 10px !important;
+    background-color: #0f172a !important;
+    border-radius: 12px !important;
 }
 
-/* INPUT TEXT */
+/* ================= INPUT TEXT ================= */
 div[data-baseweb="input"] input {
+    background-color: #0f172a !important;
     color: white !important;
-    background: transparent !important;
     caret-color: white !important;
+    -webkit-text-fill-color: white !important;
+    box-shadow: 0 0 0px 1000px #0f172a inset !important;
 }
 
-/* PASSWORD ICON */
+/* ================= TEXTAREA ================= */
+.stTextArea textarea {
+    background-color: #0f172a !important;
+    color: white !important;
+    caret-color: white !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+/* ================= NUMBER INPUT ================= */
+.stNumberInput input {
+    background-color: #0f172a !important;
+    color: white !important;
+    caret-color: white !important;
+    -webkit-text-fill-color: white !important;
+    box-shadow: 0 0 0px 1000px #0f172a inset !important;
+}
+
+/* ================= NUMBER BUTTONS ================= */
+button.step-up,
+button.step-down {
+    background-color: #0f172a !important;
+    color: white !important;
+    border: none !important;
+}
+
+/* ================= PASSWORD ICON ================= */
 div[data-baseweb="input"] svg {
     fill: white !important;
 }
 
-/* TEXTAREA */
-.stTextArea textarea {
-    background-color: #111827 !important;
-    color: white !important;
-    caret-color: white !important;
-    border-radius: 10px !important;
-}
-
-/* NUMBER INPUT */
-.stNumberInput input {
-    background-color: #111827 !important;
-    color: white !important;
-    caret-color: white !important;
-}
-
-/* NUMBER BUTTONS */
-button.step-up,
-button.step-down {
-    background-color: #111827 !important;
-    color: white !important;
-}
-
-/* SELECTBOX */
+/* ================= SELECTBOX ================= */
 .stSelectbox div[data-baseweb="select"] > div {
-    background-color: #111827 !important;
+    background-color: #0f172a !important;
     color: white !important;
-    border-radius: 10px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.12) !important;
 }
 
-/* DROPDOWN MENU */
+/* ================= DROPDOWN MENU ================= */
 div[data-baseweb="popover"] * {
-    background-color: #111827 !important;
+    background-color: #0f172a !important;
     color: white !important;
 }
 
-/* PLACEHOLDER */
+/* ================= PLACEHOLDER ================= */
 input::placeholder,
 textarea::placeholder {
     color: #9ca3af !important;
+}
+
+/* ================= AUTOFILL FIX ================= */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+    box-shadow: 0 0 0px 1000px #0f172a inset !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* ================= BUTTON ================= */
@@ -162,7 +186,6 @@ textarea::placeholder {
 
 </style>
 """, unsafe_allow_html=True)
-
 
 if "lang" not in st.session_state:
     st.session_state.lang = "English"
@@ -398,20 +421,34 @@ def login_style():
         box-shadow: 0px 0px 40px rgba(0,0,0,0.6);
         text-align: center;
         border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(10px);
     }
 
-    /* ================= REAL INPUT CONTAINER ================= */
+    /* ================= INPUT WRAPPER ================= */
+    div[data-baseweb="base-input"] {
+        background-color: #0f172a !important;
+        border: 1px solid rgba(255,255,255,0.12) !important;
+        border-radius: 12px !important;
+    }
+
+    /* ================= INPUT CONTAINER ================= */
     div[data-baseweb="input"] {
-        background-color: rgba(17,24,39,0.95) !important;
-        border: 1px solid rgba(255,255,255,0.08) !important;
-        border-radius: 10px !important;
+        background-color: #0f172a !important;
+        border-radius: 12px !important;
     }
 
-    /* ================= INPUT TEXT ================= */
+    /* ================= INPUT FIELD ================= */
     div[data-baseweb="input"] input {
-        background: transparent !important;
+        background-color: #0f172a !important;
         color: white !important;
         caret-color: white !important;
+        -webkit-text-fill-color: white !important;
+        box-shadow: 0 0 0px 1000px #0f172a inset !important;
+    }
+
+    /* ================= PASSWORD ICON ================= */
+    div[data-baseweb="input"] svg {
+        fill: white !important;
     }
 
     /* ================= PLACEHOLDER ================= */
@@ -419,9 +456,13 @@ def login_style():
         color: #9ca3af !important;
     }
 
-    /* ================= PASSWORD ICON ================= */
-    div[data-baseweb="input"] svg {
-        fill: white !important;
+    /* ================= AUTOFILL FIX ================= */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+        -webkit-text-fill-color: white !important;
+        box-shadow: 0 0 0px 1000px #0f172a inset !important;
+        transition: background-color 5000s ease-in-out 0s;
     }
 
     /* ================= LABELS ================= */
@@ -435,7 +476,7 @@ def login_style():
         width: 100%;
         background: linear-gradient(135deg,#2563eb,#1d4ed8) !important;
         color: white !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
         border: none !important;
         padding: 12px !important;
         font-weight: 600 !important;
