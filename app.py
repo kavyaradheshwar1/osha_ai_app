@@ -40,7 +40,7 @@ st.markdown("""
     background-color: #020617 !important;
 }
 
-/* MAIN CONTAINER */
+/* MAIN */
 .main {
     background-color: #020617 !important;
 }
@@ -58,6 +58,34 @@ header {
 /* TEXT */
 h1, h2, h3, h4, h5, h6, p, span, label {
     color: white !important;
+}
+
+/* INPUTS */
+.stTextInput input,
+.stTextArea textarea,
+.stNumberInput input {
+    background-color: #111827 !important;
+    color: white !important;
+    caret-color: white !important;
+}
+
+/* SELECTBOX */
+.stSelectbox div[data-baseweb="select"] > div {
+    background-color: #111827 !important;
+    color: white !important;
+}
+
+/* DROPDOWN */
+.stSelectbox * {
+    color: white !important;
+}
+
+/* BUTTON */
+.stButton > button {
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:white;
+    border:none;
+    border-radius:12px;
 }
 
 </style>
