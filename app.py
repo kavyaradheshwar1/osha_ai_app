@@ -812,8 +812,7 @@ def predictor():
         background: rgba(34,197,94,0.15);
         color:#4ade80;
     }
-    </style>
-    """, unsafe_allow_html=True)
+    
 
     /* ================= FORM BUTTON ================= */
     .stFormSubmitButton > button {
@@ -832,6 +831,9 @@ def predictor():
         transform: scale(1.02);
         box-shadow: 0 0 20px rgba(37,99,235,0.6);
     }
+
+    </style>
+    """, unsafe_allow_html=True)
 
     st.markdown("## 📊 Risk Predictor")
 
