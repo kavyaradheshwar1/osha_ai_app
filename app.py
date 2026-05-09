@@ -25,7 +25,75 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 # CONFIG
 # ==============================
 st.set_page_config(page_title="SafeGuard AI", layout="wide")
+# FORCE DARK THEME FOR ALL USERS
+st.markdown("""
+<style>
 
+/* MAIN APP BACKGROUND */
+.stApp {
+    background-color: #000814 !important;
+    color: white !important;
+}
+
+/* MAIN CONTAINER */
+.main {
+    background-color: #000814 !important;
+}
+
+/* SIDEBAR */
+[data-testid="stSidebar"] {
+    background-color: #020617 !important;
+}
+
+/* TOP HEADER */
+header {
+    background-color: #000814 !important;
+}
+
+/* TOOLBAR */
+[data-testid="stToolbar"] {
+    right: 2rem;
+}
+
+/* BLOCK CONTAINER */
+.block-container {
+    padding-top: 2rem;
+    background-color: #000814 !important;
+}
+
+/* INPUT BOXES */
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea,
+.stSelectbox div,
+.stDateInput input {
+    background-color: #111827 !important;
+    color: white !important;
+    border: 1px solid #374151 !important;
+}
+
+/* LABELS */
+label, p, h1, h2, h3, h4, h5, h6, span {
+    color: white !important;
+}
+
+/* BUTTONS */
+.stButton > button {
+    background: linear-gradient(135deg,#2563eb,#1d4ed8) !important;
+    color: white !important;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+/* FORM BACKGROUND */
+[data-testid="stForm"] {
+    background-color: #020617 !important;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 if "lang" not in st.session_state:
     st.session_state.lang = "English"
 def translate_text(text, lang):
